@@ -22,19 +22,24 @@
 	     */
 	    public GUIDemo()
 	    {
-		setTitle("Bigger/Smaller");
+		setTitle("Bigger/Smaller/Move");
 	        setSize(200, 100);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        panel = new JPanel();
 	        biggerButton = new JButton("BIGGER");
 	        smallerButton = new JButton("SMALLER");
+		moveButton = new JButton("Move");
+		moveButton.addActionListener(new ButtonHandler());
 	        biggerButton.addActionListener(new ButtonHandler());
 	        smallerButton.addActionListener(new ButtonHandler());
 	        add(panel);
 	        panel.add(biggerButton);
 	        panel.add(smallerButton);
 	        setVisible(true);
+		
 	    }
+
+
 
 	    /**
 	     * This inner class exists to handle button events. There are other ways
@@ -54,10 +59,14 @@
 	            {
 	                setSize(size.width + 10, size.height + 10);
 	            }
-	            else
+	            else if(e.getSource().equals(smallerButton)
 	            {
 	                setSize(size.width - 10, size.height - 10);
 	            }
+		    else 
+		    {
+		        setLocation((int) (Math.random() * 1000), (int) (Math.random() * 600));
+		    }
 
 	        }
 	    }
